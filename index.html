@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <style>
+
+        .header {
+        padding: 60px;
+        text-align: center;
+        background: #1abc9c;
+        color: white;
+        font-size: 30px;
+        }
+
+        input[type=text], select {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        
+        input[type=submit] {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        
+        button[type=button]:hover {
+          background-color: #45a049;
+        }
+        
+        div {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+        </style>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robots On Mars </title>
+</head>
+
+<div class="header">
+    <h1>Robo Orienteering</h1>
+    <p>Text control your Mars Bot from the comfort of your browser..</p>
+
+
+    <p>To observe social distancing between bots and for your sanity please manually refresh the page between missions</p>
+    </div>
+
+<body>
+ 
+  <br>
+    <ol>  
+    <li> Enter robot World upper right coords ( once for all robots - they are all roaming the same world )</li>
+    <li> Enter robot start coordindates </li>
+    <li> Enter robot move instruction string</li>
+    <li> Click the Add Robo to 'Bot Mission button' to register the robot for the mission</li>
+    <li> Repeat steps 2,3,4 to enter data for each robot in the mission</li>
+    <li> When all robots have been registered, click the 'Start Bot Mission' button to get going</li>
+    <li> Review the output log displayed on the page</li>
+    <li> ( See the console log via developer tools for additional details )</li>
+    </ol>
+    
+    <H3> Please ensure CAPS-LOCK is ON. All input values should be in UPPER Case    </H3>
+    <br> 
+    Robot World Upper Right Coords ( upper-right coordinates of the rectangular world example 6 5) - Enter <em>Once Only</em> shared by all Bots <input type="text" placeholder="" id="xygridcoordsID"> <br>
+    Robot Coords   (two integers specifying the initial coordinates of the robot and
+    an orientation (N, S, E, W), all separated by whitespace) Example 1 2 N <input type="text" placeholder="" id="robocoordsID"> <br>
+    Move Instructions (string of the letters “L”, “R”, and “F”) Example RFRFRFRF <input type="text" placeholder="" id="roboinstructionsID"> <br>
+    <P></P>
+  
+    <button type="button" id="addRoboID" onclick="addInputValues();">Add Robo to Bot Mission</button>
+    
+    <div id ="roboData"></div>
+
+         
+    <button type="button" onclick="getInputValues();">Start Bot Mission</button> <br>
+
+    <p></p>
+    <div id="logoutputID"></div>
+    
+    <script>
+      // Simple approach, create list of robot data on button click , then load main js script on button click to run the mission.
+      // comma separated data created from the two input fields added as paragraph elements with IDs based on the robot count number
+      // main js file will read the data from the DOM to process.
+      //
+      // Initialise robot count
+         let roboCount = 0;
+         let robodataClassname = "robodatacontent";
+      // Add Robot Data from input    
+     
+         addInputValues = () => {
+          roboCount += 1;
+          let roboID = `roboID${roboCount}`
+          let robocoordsValue = document.getElementById("robocoordsID").value;
+
+          document.getElementById("robocoordsID").value = '';
+
+          let roboinstructionsValue = String(document.getElementById("roboinstructionsID").value);
+
+          document.getElementById("roboinstructionsID").value = '';
+
+          let para = document.createElement("P");
+          let data = robocoordsValue + ',' + roboinstructionsValue;
+          para.innerHTML = data;
+          para.setAttribute("id", roboID);
+          para.setAttribute("class",robodataClassname);
+          document.getElementById("roboData").appendChild(para);
+            
+         }
+
+         getInputValues = () => {
+              // Load the robo script js file
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "main.js"; 
+            document.getElementsByTagName("body")[0].appendChild(script);
+            return false;           
+        }
+
+   
+
+     </script>
+   
+   <!-- <script type="text/javascript" src="main.js"></script> -->
+
+</body>
+</html>
