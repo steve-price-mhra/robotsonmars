@@ -12,7 +12,7 @@ an input direction instruction text.
 ***Warning : May not perform to spec - Not completed***
 
 
-![Display Image](roboOrienteeringScreenshot.png)
+![Screenshot Image](https://github.com/spriceware/robotsonmars/blob/master/roboOrienteeringScreenshot.PNG?raw=true)
 
 
 ### Programming Language HTML5/CSS/JavaScript
