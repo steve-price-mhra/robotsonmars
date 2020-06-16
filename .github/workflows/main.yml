@@ -19,11 +19,11 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       - 
-        id: jsaction
         name: "Basic JS action step"
         uses: ./action-b
+        id: jsaction
         with: 
-          originator: spriceware
+          originator: 'spricewareTesting'
       - 
         name: "Get the action output time"
-        run: echo "The time was ${{ steps.jsaction.outputs.time }}"
+        run: echo "The action time was ${{ steps.jsaction.outputs.time }}"
