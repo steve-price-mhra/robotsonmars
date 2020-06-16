@@ -10,3 +10,20 @@ jobs:
       - uses: ./action-a
         with:
           TEST_DROID: "spricewareTesting"
+
+  basic_js_action_job:
+      runs-on: ubuntu-latest
+      name: Basic JS Action
+      steps:
+        # To use this repository's private action,
+        # you must check out the repository
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Basic JS Action step
+          uses: ./action-b
+          id: jsaction
+          with:
+            originator: 'spriceware'
+        # Use the output from the `hello` step
+        - name: Get the Action output time
+        run: echo "Time Actioned ${{ steps.jsaction.outputs.time }}"

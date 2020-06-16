@@ -1,0 +1,13 @@
+name: 'Basic JS Action'
+description: 'Get ID and record the time'
+inputs:
+  originator:  # id of input
+    description: 'Action Originator'
+    required: true
+    default: 'Unknown'
+outputs:
+  time: # id of output
+    description: 'Time Actioned'
+runs:
+  using: 'node14'
+  main: 'index.js'
